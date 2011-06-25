@@ -5,9 +5,12 @@ html, body, div {
 	-o-user-select: none;
 	user-select: none;
 }
+
 div {
 	position: absolute;
+	/*
 	background-color: #ccc;
+	*/
 	border-radius: 10px;
 }
 #main {
@@ -15,90 +18,113 @@ div {
 	left: 0;
 	width: 480px;
 	height: 762px;
-	background-color: #000;
+	/* background-color: #000;*/
+	background-image: url('anymote_bg.png');
+	/* margin-top: -38px; */
 	border-radius: 0;
 }
 #on-off {
 	left: 20px;
 	top: 20px;
-	width: 100px;
-	height: 100px;
+	width: 94px;
+	height: 94px;
+	background-image: url('anymote_power_button.png');
 }
 #config {
 	left: 160px;
 	top: 20px;
-	width: 160px;
-	height: 45px;
+	width: 142px;
+	height: 39px;
+	background-image: url('configure_button.png');
 }
 #device {
 	right: 20px;
 	top: 20px;
-	width: 100px;
-	height: 100px;
+	width: 159px;
+	height: 89px;
+	background-image: url('device_button.png');
 }
 #channel-up {
-	left: 20px;
+	left: 30px;
 	top: 140px;
-	width: 100px;
-	height: 100px;
+	width: 115px;
+	height: 122px;
+	background-image: url('ch_plus_button.png');
 }
 #channel-down {
-	left: 20px;
+	left: 30px;
 	top: 260px;
-	width: 100px;
-	height: 100px;
+	width: 115px;
+	height: 122px;
+	background-image: url('ch_minus_button.png');
 }
 #volume-up {
-	right: 20px;
+	right: 30px;
 	top: 140px;
-	width: 100px;
-	height: 100px;
+	width: 115px;
+	height: 122px;
+	background-image: url('vol_plus_button.png');
 }
 #volume-down {
-	right: 20px;
+	right: 30px;
 	top: 260px;
-	width: 100px;
-	height: 100px;
+	width: 115px;
+	height: 122px;
+	background-image: url('vol_minus_button.png');
 }
 #ok {
+	/* HACK - The OK button needs to be broken down into its 5 elements, and then the up, down, left and right can be re-enabled
 	left: 190px;
 	top: 180px;
-	width: 100px;
-	height: 100px;
+	*/
+	left: 150px;
+	top: 140px;
+	width: 181px;
+	height: 181px;
+	z-index: 100;
+	background-image: url('nav_button.png');
 }
+/*
 #up {
 	left: 190px;
 	top: 125px;
 	width: 100px;
 	height: 45px;
+	background-image: url('');
 }
 #down {
 	left: 190px;
 	top: 290px;
 	width: 100px;
 	height: 45px;
+	background-image: url('');
 }
 #left {
 	left: 135px;
 	top: 180px;
 	width: 45px;
 	height: 100px;
+	background-image: url('');
 }
 #right {
 	right: 135px;
 	top: 180px;
 	width: 45px;
 	height: 100px;
+	background-image: url('');
 }
+*/
 #menu {
-	left: 160px;
-	top: 345px;
-	width: 160px;
-	height: 45px;
+	left: 180px;
+	top: 325px;
+	width: 115px;
+	height: 63px;
+	background-image: url('menu_button.png');
 }
 #gesture-area {
 	left: 20px;
 	top: 410px;
 	width: 440px;
 	height: 300px;
+	background-image: url('');
 }
