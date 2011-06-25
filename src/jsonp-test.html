@@ -18,7 +18,7 @@
 				var script_element = document.createElement('script');
 				script_element.type = 'text/javascript';
 				script_element.async = true;
-				script_element.src = 'http://192.168.1.135/id.irda?id=' + code + '&count=' + counter;
+				script_element.src = 'http://c' + counter '@192.168.1.135/id.irda?id=' + code;
 
 				// Funktion to invoke callback with result and cleanup.
 				request_ok = function(data) {
