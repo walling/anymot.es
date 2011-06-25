@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Multitouch Test</title>
+		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<script type="text/javascript">
+			document.addEventListener('DOMContentLoaded', function() {
+				var state   = document.getElementById('state');
+				var touches = document.getElementById('touches');
+				var target  = document.getElementById('target');
+				var changed = document.getElementById('changed');
+
+				function displayState(name, evt) {
+					state.textContent = 'Touch state: ' + name;
+					touches.textContent = JSON.stringify(evt.touches || null);
+					target.textContent  = JSON.stringify(evt.targetTouches || null);
+					changed.textContent = JSON.stringify(evt.changedTouches || null);
+				}
+
+				document.body.ontouchstart = function(evt) {
+					displayState('start', evt);
+				};
+
+				document.body.ontouchend = function(evt) {
+					displayState('end', evt);
+				};
+
+				document.body.ontouchmove = function(evt) {
+					displayState('move', evt);
+				};
+
+				document.body.ontouchcancel = function(evt) {
+					displayState('cancel', evt);
+				};
+
+			}, false);
+		</script>
+		<style type="text/css">
+			* {
+				-webkit-user-select: none;
+				-khtml-user-select: none;
+				-moz-user-select: none;
+				-o-user-select: none;
+				user-select: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1 id="state">Touch state:</h1>
+		<h1>Touches:</h1>
+		<pre id="touches"></pre>
+		<h1>Target Touches:</h1>
+		<pre id="target"></pre>
+		<h1>Changed Touches:</h1>
+
+		<pre id="changed"></pre>
+	</body>
+</html>
