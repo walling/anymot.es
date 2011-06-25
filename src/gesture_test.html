@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Gesture Test</title>
+		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<script src="gestures.js"></script>
+		<script type="text/javascript">
+			document.addEventListener('DOMContentLoaded', function() {
+				var swipe = document.getElementById('swipe');
+				document.body.onswipe = function (evt) {
+					swipe.textContent = JSON.stringify({
+						angle: evt.angle,
+						distance: evt.distance,
+						direction: evt.direction,
+					});
+				}
+
+			}, false);
+		</script>
+		<style type="text/css">
+			* {
+				-webkit-user-select: none;
+				-khtml-user-select: none;
+				-moz-user-select: none;
+				-o-user-select: none;
+				user-select: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1>swipe event:</h1>
+		<pre id="swipe"></pre>
+	</body>
+</html>
