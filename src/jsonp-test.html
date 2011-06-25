@@ -5,18 +5,20 @@
 		<script type="text/javascript">
 			var noop = function() {};
 			var request_ok = noop;
+			var counter = 0;
 
 			function irda(code, callback) {
 				// Callback are optional.
 				callback = callback || noop;
 
 				var failure_timer;
+				counter++;
 
 				// Create JSONP script element to inject.
 				var script_element = document.createElement('script');
 				script_element.type = 'text/javascript';
 				script_element.async = true;
-				script_element.src = 'http://192.168.1.135/id.irda?id=' + code;
+				script_element.src = 'http://192.168.1.135/id.irda?id=' + code + '&count=' + counter;
 
 				// Funktion to invoke callback with result and cleanup.
 				request_ok = function(data) {
