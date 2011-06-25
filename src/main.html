@@ -7,6 +7,26 @@
 		<meta name="viewport" content="width=480px" />
 		<link rel="stylesheet" type="text/css" href="main.css">
 		<script src="jquery.min.js"></script>
+		<script type="text/javascript">
+			$(function () {
+				$('body').bind('touchstart mousedown', function(evt) {
+					if (evt.target == document.getElementById('main')) {
+						// We only want to handle targets inside #main
+						return false;
+					}
+					$(evt.target).css('opacity', '0.5');
+					// This avoids (some of) the dbl.click => zoom issues
+					return false;
+				});
+				$('body').bind('touchend mouseup', function(evt) {
+					if (evt.target == document.getElementById('main')) {
+						// We only want to handle targets inside #main
+						return false;
+					}
+					$(evt.target).css('opacity', '1');
+				});
+			})
+		</script>
 	</head>
 	<body>
 		<div id="main">
