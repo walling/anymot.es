@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, height=device-height, user-scalable=no">
+		<script type="text/javascript">
+			var noop = function() {};
+			var request_ok = noop;
+
+			function irda(code, callback) {
+				// Callback are optional.
+				callback = callback || noop;
+
+				var failure_timer;
+
+				// Create JSONP script element to inject.
+				var script_element = document.createElement('script');
+				script_element.type = 'text/javascript';
+				script_element.async = true;
+				script_element.src = 'http://192.168.1.135/id.irda?id=' + code;
+
+				// Funktion to invoke callback with result and cleanup.
+				request_ok = function(data) {
+					request_ok = noop; // The result must only be provided once.
+
+					// Cleanup after both success or failure.
+					clearTimeout(failure_timer);
+					script_element.onreadystatechange = undefined;
+					script_element.onerror = undefined;
+					script_element.parentNode.removeChild(script_element);
+					script_element = undefined; // So MSIE does not leak memory.
+
+					// Invoke callback with either error or actual data.
+					if (data === 'error') {
+						callback(new Error('IRDA request failed (code 0x' + code.toString(16) + ')'));
+					} else {
+						callback(null);
+					}
+				};
+				var failure = function() {
+					request_ok('error');
+				};
+
+				// Setup timer for failure. When it triggers, we assume the request failed.
+				var failure_timer = setTimeout(failure, 500);
+
+				// Fail faster if we know that the script is supposed to be executed.
+				script_element.onreadystatechange = function() {
+					if (this.readyState === 'loaded' || this.readyState === 'complete') {
+						failure();
+					}
+				};
+				script_element.onerror = failure;
+
+				// Inject script element, which in turn creates the JSONP request.
+				document.body.appendChild(script_element);
+			};
+
+			function makeRequest() {
+				var status = document.getElementById('status');
+				var code = document.getElementById('code');
+				var button = document.getElementById('button');
+				code.disabled = true;
+				code.button   = true;
+				irda(code.value | 0, function(err) {
+					if (err) {
+						status.textContent = '' + err + '\n' + status.textContent;
+					} else {
+						status.textContent = 'Done\n' + status.textContent;
+					}
+					code.disabled = false;
+					code.button   = false;
+				});
+			}
+		</script>
+		<style type="text/css">
+			html, body, p, pre {
+				-webkit-user-select: none;
+				-khtml-user-select: none;
+				-moz-user-select: none;
+				-o-user-select: none;
+				user-select: none;
+			}
+		</style>
+	</head>
+	<body>
+		<p>
+			<input id="code" type="text" value="42">
+			<input id="button" type="button" value="DO IT!" onclick="makeRequest(); return false;"><br>
+			<pre id="status"></pre>
+		</p>
+	</body>
+</html>
