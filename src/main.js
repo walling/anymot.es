@@ -66,12 +66,19 @@ var ir_codes = {
 		codes: {
 			power_on_off: 0x5EA1F807,
 			volume_up:    0x5EA158A7,
-			volume_down:  0x5EA1D827
+			volume_down:  0x5EA1D827,
+			play:         0x5EA110EF,
+			stop:         0x5EA1906F,
+			fast_forward: 0x5EA130CF,
+			fast_rewind:  0x5EA1B04F
 		},
 		mappings: {
 			'on-off': 'power_on_off',
 			'volume-up': 'volume_up',
 			'volume-down': 'volume_down',
+			'ok': 'play',
+			'channel-up': 'fast_forward',
+			'channel-down': 'fast_rewind'
 		},
 		hidden: [ 'menu' ]
 	},
