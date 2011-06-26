@@ -51,7 +51,7 @@ var ir_codes = {
 		}
 	},
 	// Our second projector.
-	'ASK ProXima': {
+	'Projector': {
 		codes: {
 			volume_up:   0xE17210EF,
 			volume_down: 0xE17220DF
@@ -62,7 +62,7 @@ var ir_codes = {
 		}
 	},
 	// Our stereo.
-	'Yamaha RX-396RDS': {
+	'CD': {
 		codes: {
 			power_on_off: 0x5EA1F807,
 			volume_up:    0x5EA158A7,
@@ -209,10 +209,10 @@ $(function () {
 		if (button_id == "device") {
 			// Toggle device
 			var device = get_current_device();
-			if (device == 'ASK ProXima') {
-				set_current_device('Yamaha RX-396RDS');
+			if (device == 'Projector') {
+				set_current_device('CD');
 			} else {
-				set_current_device('ASK ProXima');
+				set_current_device('Projector');
 			}
 		} else {
 			var device = get_current_device();
