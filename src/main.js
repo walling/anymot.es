@@ -74,6 +74,15 @@ var ir_codes = {
 			'volume-down': 'volume_down',
 		},
 		hidden: [ 'menu' ]
+	},
+	/* MOCKS: */
+	'TV': {
+		codes: {},
+		mappings: {}
+	},
+	'VCR': {
+		codes: {},
+		mappings: {}
 	}
 };
 
@@ -199,41 +208,57 @@ $(function () {
 	*/
 
 	$('body').bind('touchstart mousedown', function(evt) {
-		if (evt.target == document.getElementById('main')) {
-			// We only want to handle targets inside #main
-			return false;
-		}
-		$(evt.target).css('opacity', '0.5');
-		var button_id = $(evt.target).attr('id');
-		// console.log('button_id', button_id);
-		if (button_id == "device") {
-			// Toggle device
-			var device = get_current_device();
-			if (device == 'Projector') {
-				set_current_device('CD');
+		var device_button_pressed = false;
+
+		if ($(evt.target).is('.remote-button')) {
+
+			$(evt.target).css('opacity', '0.5');
+
+			var button_id = $(evt.target).attr('id');
+			console.log('button_id', button_id);
+			if (button_id == "device") {
+				device_button_pressed = true;
+				$('#device-selector').animate({ left: 305 });
+				/*
+				// Toggle device
+				var device = get_current_device();
+				if (device == 'Projector') {
+					set_current_device('CD');
+				} else {
+					set_current_device('Projector');
+				}
+				*/
+			} else if (button_id == "config") {
+				if($('#config-screen').is(".disabled"))
+					$('#config-screen').attr("class", "enabled");
+				$('#config-screen').click(function(){
+					$('#config-screen').attr("class", "disabled");
+				});
 			} else {
-				set_current_device('Projector');
+				var device = get_current_device();
+				handle_device_button_click(device, button_id);
 			}
-		} else if (button_id == "config") {
-			if($('#config-screen').is(".disabled"))
-				$('#config-screen').attr("class", "enabled");
-			$('#config-screen').click(function(){
-				$('#config-screen').attr("class", "disabled");
-			});
-		} else {
-			var device = get_current_device();
-			handle_device_button_click(device, button_id);
 		}
-		
+
+		if (!device_button_pressed) {
+			$('#device-selector').animate({ left: 480 });
+		}
+
 		// This avoids (some of) the dbl.click => zoom issues
 		return false;
 	});
 	$('body').bind('touchend mouseup', function(evt) {
-		if (evt.target == document.getElementById('main')) {
-			// We only want to handle targets inside #main
-			return false;
+		if ($(evt.target).is('.remote-button')) {
+			$(evt.target).css('opacity', '1');
 		}
-		$(evt.target).css('opacity', '1');
+		return false;
+	});
+
+	$('#device-selector > div').bind('touchstart mousedown', function(evt) {
+		var device = $(evt.target).text();
+		set_current_device(device);
+		$('#device-selector').animate({ left: 480 });
+		return false;
 	});
 
 });
