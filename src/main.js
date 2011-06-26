@@ -131,14 +131,14 @@ function irda_end() {
 
 
 function map_key(name, code) {
-	$(name).bind('touchstart', function() {
+	$('#' + name).bind('touchstart mousedown', function() {
 		irda_emit(code);
 	});
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-	var device_button = ir_codes['NEC RD-427E'].buttons;
+	var device_button = ir_codes['ASK ProXima'].buttons;
 
-	map_key('volume-up',   device_button.volue_up  );
-	map_key('volume-down', device_button.volue_down);
+	map_key('volume-up',   device_button.volume_up  );
+	map_key('volume-down', device_button.volume_down);
 });
