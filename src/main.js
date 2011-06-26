@@ -144,7 +144,11 @@ function map_key(name, code) {
 	});
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+$(function() {
+	setTimeout(function() {
+		$('#splash-screen').fadeOut('slow');
+	}, 5000);
+
 	var device_button = ir_codes['ASK ProXima'].buttons;
 
 	map_key('volume-up',   device_button.volume_up  );
