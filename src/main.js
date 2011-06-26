@@ -41,6 +41,14 @@ var ir_codes = {
 			volume_up:   0xE17210EF,
 			volume_down: 0xE17220DF
 		}
+	},
+	// Our stereo.
+	'Yamaha RX-396RDS': {
+		buttons: {
+			power_on_off: 0x5EA1F807,
+			volume_up:    0x5EA158A7,
+			volume_down:  0x5EA1D827
+		}
 	}
 };
 
