@@ -64,21 +64,25 @@ var ir_codes = {
 	// Our stereo.
 	'CD': {
 		codes: {
-			power_on_off: 0x5EA1F807,
-			volume_up:    0x5EA158A7,
-			volume_down:  0x5EA1D827,
-			play:         0x5EA110EF,
-			stop:         0x5EA1906F,
-			fast_forward: 0x5EA130CF,
-			fast_rewind:  0x5EA1B04F
+			power_on_off:   0x5EA1F807,
+			volume_up:      0x5EA158A7,
+			volume_down:    0x5EA1D827,
+			play:           0x5EA110EF,
+			stop:           0x5EA1906F,
+			fast_forward:   0x5EA130CF,
+			fast_rewind:    0x5EA1B04F,
+			track_next:     0x5EA150AF,
+			track_previous: 0x5EA1D02F,
+			open_close:     0x9E61807F
 		},
 		mappings: {
 			'on-off': 'power_on_off',
 			'volume-up': 'volume_up',
 			'volume-down': 'volume_down',
 			'ok': 'play',
-			'channel-up': 'fast_forward',
-			'channel-down': 'fast_rewind'
+			'channel-up': 'track_next',
+			'channel-down': 'track_previous',
+			'menu': 'open_close'
 		},
 		hidden: [ 'menu' ]
 	},
@@ -96,7 +100,9 @@ var ir_codes = {
 
 var use_cloud = (location.search.match(/cloud/) ||
 	location.href.substring(0, 17) === 'http://anymot.es/' ||
-	location.href.substring(0, 21) === 'http://www.anymot.es/');
+	location.href.substring(0, 21) === 'http://www.anymot.es/' ||
+	location.href.substring(0, 17) === 'http://morch.com/' ||
+	location.href.substring(0, 21) === 'http://www.morch.com/');
 var noop = function() {};
 var request_ok = noop;
 var counter = 0;
@@ -106,7 +112,7 @@ var counter = 0;
  */
 function irda_emit(code, callback) {
 	if (location.search.match(/log_ir/)) {
-		console.log("irda_emit", code);
+		window.console && console.log("irda_emit", code);
 		return;
 	}
 	// Callback are optional.
@@ -228,7 +234,7 @@ $(function () {
 			$(evt.target).css('opacity', '0.5');
 
 			var button_id = $(evt.target).attr('id');
-			console.log('button_id', button_id);
+			window.console && console.log('button_id', button_id);
 			if (button_id == "device") {
 				device_button_pressed = true;
 				$('#device-selector').animate({ left: 305 });
