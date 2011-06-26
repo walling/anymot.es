@@ -14,7 +14,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.0 r9654"
-   sodipodi:docname="New document 1">
+   sodipodi:docname="Anymot.es_logo.svg"
+   inkscape:export-filename="/home/nikolaj/anymot.es/src/Anymot.es_logo.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -54,15 +57,15 @@
      transform="translate(0,-572.36218)">
     <text
        xml:space="preserve"
-       style="font-size:119.07123566px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#008000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
+       style="font-size:141.40206909px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#008000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
        x="13.62239"
-       y="851.68799"
+       y="846.98846"
        id="text2985"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan2987"
          x="13.62239"
-         y="851.68799">Anymotes.es</tspan></text>
+         y="846.98846">Anymot.es</tspan></text>
     <path
        sodipodi:type="arc"
        style="fill:none;stroke:#d10000;stroke-width:8;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:none"
@@ -72,7 +75,7 @@
        sodipodi:rx="40.406101"
        sodipodi:ry="37.880722"
        d="m 301.31689,60.557725 a 40.406101,37.880722 0 0 1 51.94508,1e-6"
-       transform="matrix(1.0737156,0,0,1.0737156,29.766219,721.94209)"
+       transform="matrix(1.2750822,0,0,1.2750822,32.793862,692.9098)"
        sodipodi:start="4.0142573"
        sodipodi:end="5.4105207"
        sodipodi:open="true" />
@@ -85,7 +88,7 @@
        sodipodi:rx="40.406101"
        sodipodi:ry="37.880722"
        d="m 301.31689,60.557725 a 40.406101,37.880722 0 0 1 51.94508,1e-6"
-       transform="matrix(1.3010262,0,0,1.3075167,-44.523681,694.7908)"
+       transform="matrix(1.545023,0,0,1.5527308,-55.428501,660.66651)"
        sodipodi:start="4.0142573"
        sodipodi:end="5.4105207"
        sodipodi:open="true" />
@@ -98,7 +101,7 @@
        sodipodi:rx="40.406101"
        sodipodi:ry="37.880722"
        d="m 301.31689,60.557725 a 40.406101,37.880722 0 0 1 51.94508,1e-6"
-       transform="matrix(1.5744092,0,0,1.4526536,-133.36619,671.04355)"
+       transform="matrix(1.8696768,0,0,1.7250869,-160.9327,632.46566)"
        sodipodi:start="4.0142573"
        sodipodi:end="5.4105207"
        sodipodi:open="true" />
