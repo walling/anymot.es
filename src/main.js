@@ -156,6 +156,7 @@ $(function() {
 	var device_button = ir_codes['Yamaha RX-396RDS'].buttons;
 
 	map_key('on-off',      device_button.power_on_off);
+	map_key('menu',        0x9E61807F);
 	map_key('volume-up',   device_button.volume_up  );
 	map_key('volume-down', device_button.volume_down);
 });
