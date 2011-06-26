@@ -54,13 +54,13 @@ div {
 }
 #on-off {
 	left: 20px;
-	top: 20px;
+	top: 10px;
 	width: 94px;
 	height: 94px;
 	background-image: url('anymote_power_button.png');
 }
 #config {
-	left: 160px;
+	left: 140px;
 	top: 20px;
 	width: 142px;
 	height: 39px;
@@ -80,28 +80,28 @@ div {
 }
 #channel-up {
 	left: 30px;
-	top: 140px;
+	top: 120px;
 	width: 115px;
 	height: 122px;
 	background-image: url('ch_plus_button.png');
 }
 #channel-down {
 	left: 30px;
-	top: 262px;
+	top: 242px;
 	width: 115px;
 	height: 122px;
 	background-image: url('ch_minus_button.png');
 }
 #volume-up {
 	right: 30px;
-	top: 140px;
+	top: 120px;
 	width: 115px;
 	height: 122px;
 	background-image: url('vol_plus_button.png');
 }
 #volume-down {
 	right: 30px;
-	top: 262px;
+	top: 242px;
 	width: 115px;
 	height: 122px;
 	background-image: url('vol_minus_button.png');
@@ -112,7 +112,7 @@ div {
 	top: 180px;
 	*/
 	left: 150px;
-	top: 140px;
+	top: 135px;
 	width: 181px;
 	height: 181px;
 	background-image: url('nav_button.png');
@@ -153,6 +153,20 @@ div {
 	width: 115px;
 	height: 63px;
 	background-image: url('menu_button.png');
+}
+#text-channel {
+	left: 30px;
+	top: 365px;
+	width: 115px;
+	height: 22px;
+	background-image: url('ch_label.png');
+}
+#text-volume {
+	right: 35px;
+	top: 365px;
+	width: 115px;
+	height: 22px;
+	background-image: url('vol_label.png');
 }
 #gesture-area {
 	left: 20px;

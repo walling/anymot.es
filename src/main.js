@@ -87,7 +87,7 @@ var ir_codes = {
 };
 
 
-var use_cloud = (location.search === '?c' || location.search === '?cloud' || location.href.substring(0, 17) === 'http://anymot.es/');
+var use_cloud = location.search.match(/cloud/) || location.href.substring(0, 17) === 'http://anymot.es/';
 var noop = function() {};
 var request_ok = noop;
 var counter = 0;
@@ -96,7 +96,7 @@ var counter = 0;
  * Emit IR codes.
  */
 function irda_emit(code, callback) {
-	if (location.href.match(/log_ir=1/)) {
+	if (location.search.match(/log_ir/)) {
 		console.log("irda_emit", code);
 		return;
 	}
@@ -197,9 +197,13 @@ function get_current_device() {
 }
 
 $(function () {
-	setTimeout(function() {
-		$('#splash-screen').fadeOut('slow');
-	}, 2500);
+	if (location.search.match(/no_splash/)) {
+		$('#splash-screen').hide();
+	} else {
+		setTimeout(function() {
+			$('#splash-screen').fadeOut('slow');
+		}, 2500);
+	}
 
 	/*
 	- Visual indication of clicks but without strange green decoration you get by
