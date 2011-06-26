@@ -55,6 +55,7 @@ div {
 	top: 20px;
 	width: 159px;
 	height: 89px;
+	color: white;
 	background-image: url('device_button.png');
 }
 #channel-up {

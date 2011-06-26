@@ -1,10 +1,25 @@
 /**
  * IR codes for different devices.
+ *
+ * Buttons:
+ * on-off
+ * config
+ * device
+ * channel-up
+ * channel-down
+ * volume-up
+ * volume-down
+ * ok
+ * up
+ * down
+ * left
+ * right
+ * menu
  */
 var ir_codes = {
 	// IR codes for NEC RD-427E, 189728D7 189710ef.
 	'NEC RD-427E': {
-		buttons: {
+		codes: {
 			power_off:         0x189728D7,
 			power_on:          0x189710EF,
 			magnify_plus:      0x1897916E,
@@ -37,18 +52,28 @@ var ir_codes = {
 	},
 	// Our second projector.
 	'ASK ProXima': {
-		buttons: {
+		codes: {
 			volume_up:   0xE17210EF,
 			volume_down: 0xE17220DF
+		},
+		mappings: {
+			'volume-up': 'volume_up',
+			'volume-down': 'volume_down',
 		}
 	},
 	// Our stereo.
 	'Yamaha RX-396RDS': {
-		buttons: {
+		codes: {
 			power_on_off: 0x5EA1F807,
 			volume_up:    0x5EA158A7,
 			volume_down:  0x5EA1D827
-		}
+		},
+		mappings: {
+			'on-off': 'power_on_off',
+			'volume-up': 'volume_up',
+			'volume-down': 'volume_down',
+		},
+		hidden: [ 'menu' ]
 	}
 };
 
@@ -62,6 +87,10 @@ var counter = 0;
  * Emit IR codes.
  */
 function irda_emit(code, callback) {
+	if (location.href.match(/log_ir=1/)) {
+		console.log("irda_emit", code);
+		return;
+	}
 	// Callback are optional.
 	callback = callback || noop;
 
@@ -142,20 +171,64 @@ function irda_end() {
 */
 
 
-function map_key(name, code) {
-	$('#' + name).bind('touchstart mousedown', function() {
-		irda_emit(code);
-	});
+function handle_device_button_click(device, button_id) {
+	var dev_hash = ir_codes[device];
+	var ir_code = dev_hash.codes[dev_hash.mappings[button_id]];
+	if (typeof(ir_code) != 'undefined') {
+		irda_emit(ir_code);
+	}
 }
 
-$(function() {
+function set_current_device(device) {
+	$('#device').text(device);
+}
+
+function get_current_device() {
+	return $('#device').text();
+}
+
+$(function () {
 	setTimeout(function() {
 		$('#splash-screen').fadeOut('slow');
 	}, 2500);
 
-	var device_button = ir_codes['Yamaha RX-396RDS'].buttons;
+	/*
+	- Visual indication of clicks but without strange green decoration you get by
+		binding to buttons directly
+	- Handle button clicks to send out the right button codes
+	*/
 
-	map_key('on-off',      device_button.power_on_off);
-	map_key('volume-up',   device_button.volume_up  );
-	map_key('volume-down', device_button.volume_down);
-});
+	$('body').bind('touchstart mousedown', function(evt) {
+		if (evt.target == document.getElementById('main')) {
+			// We only want to handle targets inside #main
+			return false;
+		}
+		$(evt.target).css('opacity', '0.5');
+		var button_id = $(evt.target).attr('id');
+		// console.log('button_id', button_id);
+		if (button_id == "device") {
+			// Toggle device
+			var device = get_current_device();
+			if (device == 'ASK ProXima') {
+				set_current_device('Yamaha RX-396RDS');
+			} else {
+				set_current_device('ASK ProXima');
+			}
+		} else {
+			var device = get_current_device();
+			handle_device_button_click(device, button_id);
+		}
+		
+		// This avoids (some of) the dbl.click => zoom issues
+		return false;
+	});
+	$('body').bind('touchend mouseup', function(evt) {
+		if (evt.target == document.getElementById('main')) {
+			// We only want to handle targets inside #main
+			return false;
+		}
+		$(evt.target).css('opacity', '1');
+	});
+
+	// 
+})
