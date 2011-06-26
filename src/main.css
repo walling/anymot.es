@@ -66,7 +66,7 @@ div {
 }
 #channel-down {
 	left: 30px;
-	top: 260px;
+	top: 262px;
 	width: 115px;
 	height: 122px;
 	background-image: url('ch_minus_button.png');
@@ -80,7 +80,7 @@ div {
 }
 #volume-down {
 	right: 30px;
-	top: 260px;
+	top: 262px;
 	width: 115px;
 	height: 122px;
 	background-image: url('vol_minus_button.png');
