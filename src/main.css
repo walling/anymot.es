@@ -5,13 +5,26 @@ html, body, div {
 	-o-user-select: none;
 	user-select: none;
 }
-
 div {
 	position: absolute;
-	/*
-	background-color: #ccc;
-	*/
-	border-radius: 10px;
+}
+#splash-screen {
+	top: 0;
+	left: 0;
+	width: 480px;
+	height: 762px;
+	background-image: url('splash_screen.png');
+	background-repeat: no-repeat;
+	z-index: 2;
+}
+#splash-screen-loading {
+	top: 280px;
+	left: 190px;
+	width: 100px;
+	height: 100px;
+	background-image: url('loading.gif');
+	background-repeat: no-repeat;
+	z-index: 3;
 }
 #main {
 	top: 0;
@@ -20,8 +33,8 @@ div {
 	height: 762px;
 	/* background-color: #000;*/
 	background-image: url('anymote_bg.png');
+	background-repeat: no-repeat;
 	/* margin-top: -38px; */
-	border-radius: 0;
 }
 #on-off {
 	left: 20px;
@@ -81,7 +94,6 @@ div {
 	top: 140px;
 	width: 181px;
 	height: 181px;
-	z-index: 100;
 	background-image: url('nav_button.png');
 }
 /*
