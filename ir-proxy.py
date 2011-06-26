@@ -28,8 +28,8 @@ while True:
 		print 'Proxying IR code: 0x%X' % code,
 		request = None
 		try:
-			request = httplib.HTTPConnection(arduino_host, timeout=1).request("GET", "/ir.irda?id=%d" % code)
-		except socket.timeout: pass
+			request = httplib.HTTPConnection(arduino_host, timeout=1).request("GET", "/id.irda?id=%d" % code)
+		except socket.timeout: print 'Timeout'
 		if request:
 			response = request.getresponse()
 			if response.status == 200:
