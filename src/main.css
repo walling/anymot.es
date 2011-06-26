@@ -144,11 +144,16 @@ div {
 	left: 480px;
 
 	width: 400px;
-	height: 440px;
+	height: 268px;
 	position: absolute;
-	margin-top: 30px;
+	margin-top: 25px;
 	padding: 0;
 	bottom: 0;
+
+	padding-left: 8px;
+
+	opacity: 0.8;
+	border-radius: 10px;
 }
 #device-selector div
 {
@@ -156,13 +161,16 @@ div {
 	position:relative;
 	margin: 20px;
 
+	background-color: #333;
+
 	font-size: 35px;
 	margin: 7px 0px;
 	margin-right: 6px;
 	padding: 10px 12px 7px;
 	text-decoration: none;
-	color: #191919;
+	color: #ffffff;
 	font-weight: bold;
 	border-radius: 2px;
-	text-shadow: 0px 1px 0px #fff;
+	text-shadow: 0px 1px 0px #000;
+	border-radius: 5px;
 }

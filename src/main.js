@@ -74,6 +74,15 @@ var ir_codes = {
 			'volume-down': 'volume_down',
 		},
 		hidden: [ 'menu' ]
+	},
+	/* MOCKS: */
+	'TV': {
+		codes: {},
+		mappings: {}
+	},
+	'VCR': {
+		codes: {},
+		mappings: {}
 	}
 };
 
@@ -199,6 +208,8 @@ $(function () {
 	*/
 
 	$('body').bind('touchstart mousedown', function(evt) {
+		var device_button_pressed = false;
+
 		if ($(evt.target).is('.remote-button')) {
 
 			$(evt.target).css('opacity', '0.5');
@@ -206,6 +217,9 @@ $(function () {
 			var button_id = $(evt.target).attr('id');
 			console.log('button_id', button_id);
 			if (button_id == "device") {
+				device_button_pressed = true;
+				$('#device-selector').animate({ left: 305 });
+				/*
 				// Toggle device
 				var device = get_current_device();
 				if (device == 'Projector') {
@@ -213,11 +227,17 @@ $(function () {
 				} else {
 					set_current_device('Projector');
 				}
+				*/
 			} else {
 				var device = get_current_device();
 				handle_device_button_click(device, button_id);
 			}
 		}
+
+		if (!device_button_pressed) {
+			$('#device-selector').animate({ left: 480 });
+		}
+
 		// This avoids (some of) the dbl.click => zoom issues
 		return false;
 	});
@@ -225,6 +245,13 @@ $(function () {
 		if ($(evt.target).is('.remote-button')) {
 			$(evt.target).css('opacity', '1');
 		}
+		return false;
+	});
+
+	$('#device-selector > div').bind('touchstart mousedown', function(evt) {
+		var device = $(evt.target).text();
+		set_current_device(device);
+		$('#device-selector').animate({ left: 480 });
 		return false;
 	});
 
