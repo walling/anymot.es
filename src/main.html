@@ -2,30 +2,9 @@
 <html>
 	<head>
 		<title>Anymot.es</title>
-		<meta content='True' name='HandheldFriendly' />
-		<meta content='width=480px; initial-scale=0.50; maximum-scale=0.50;minimum-scale=0.50;' name='viewport' />
-		<meta name="viewport" content="width=480px" />
+		<meta name="viewport" content="width=device-width, target-densityDpi=device-dpi" />
 		<link rel="stylesheet" type="text/css" href="main.css">
 		<script src="jquery.min.js"></script>
-		<script type="text/javascript">
-			$(function () {
-				$('body').bind('touchstart mousedown', function(evt) {
-					if (evt.target == document.getElementById('main')) {
-						// We only want to handle targets inside #main
-						return false;
-					}
-					$(evt.target).css('opacity', '0.5');
-					// This avoids (some of) the dbl.click => zoom issues
-					return false;
-				});
-				$('body').bind('touchend mouseup', function(evt) {
-					if (evt.target == document.getElementById('main')) {
-						// We only want to handle targets inside #main
-						return false;
-					}
-					$(evt.target).css('opacity', '1');
-				});
-			})
 		</script>
 		<script type="text/javascript" src="main.js"></script>
 	</head>
@@ -34,7 +13,7 @@
 		<div id="main">
 			<div id="on-off"></div>
 			<div id="config"></div>
-			<div id="device"></div>
+			<div id="device">ASK ProXima</div>
 			<div id="channel-up"></div>
 			<div id="channel-down"></div>
 			<div id="volume-up"></div>
