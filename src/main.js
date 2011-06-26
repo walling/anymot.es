@@ -151,7 +151,7 @@ function map_key(name, code) {
 $(function() {
 	setTimeout(function() {
 		$('#splash-screen').fadeOut('slow');
-	}, 5000);
+	}, 2500);
 
 	var device_button = ir_codes['Yamaha RX-396RDS'].buttons;
 
