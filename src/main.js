@@ -199,35 +199,33 @@ $(function () {
 	*/
 
 	$('body').bind('touchstart mousedown', function(evt) {
-		if (evt.target == document.getElementById('main')) {
-			// We only want to handle targets inside #main
-			return false;
-		}
-		$(evt.target).css('opacity', '0.5');
-		var button_id = $(evt.target).attr('id');
-		// console.log('button_id', button_id);
-		if (button_id == "device") {
-			// Toggle device
-			var device = get_current_device();
-			if (device == 'Projector') {
-				set_current_device('CD');
+		if ($(evt.target).is('.remote-button')) {
+
+			$(evt.target).css('opacity', '0.5');
+
+			var button_id = $(evt.target).attr('id');
+			console.log('button_id', button_id);
+			if (button_id == "device") {
+				// Toggle device
+				var device = get_current_device();
+				if (device == 'Projector') {
+					set_current_device('CD');
+				} else {
+					set_current_device('Projector');
+				}
 			} else {
-				set_current_device('Projector');
+				var device = get_current_device();
+				handle_device_button_click(device, button_id);
 			}
-		} else {
-			var device = get_current_device();
-			handle_device_button_click(device, button_id);
 		}
-		
 		// This avoids (some of) the dbl.click => zoom issues
 		return false;
 	});
 	$('body').bind('touchend mouseup', function(evt) {
-		if (evt.target == document.getElementById('main')) {
-			// We only want to handle targets inside #main
-			return false;
+		if ($(evt.target).is('.remote-button')) {
+			$(evt.target).css('opacity', '1');
 		}
-		$(evt.target).css('opacity', '1');
+		return false;
 	});
 
 });
