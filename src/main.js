@@ -1,5 +1,8 @@
+/**
+ * IR codes for different devices.
+ */
 var ir_codes = {
-	// IR codes for NEC RD-427E, 189728D7 189710ef
+	// IR codes for NEC RD-427E, 189728D7 189710ef.
 	'NEC RD-427E': {
 		buttons: {
 			power_off:         0x189728D7,
@@ -31,5 +34,111 @@ var ir_codes = {
 			picture:           0x1897B04F,
 			freeze:            0x1897B04F
 		}
+	},
+	// Our second projector.
+	'ASK ProXima': {
+		buttons: {
+			volume_up:   0xE17210EF,
+			volume_down: 0xE17220DF
+		}
 	}
 };
+
+
+var noop = function() {};
+var request_ok = noop;
+var counter = 0;
+
+/**
+ * Emit IR codes.
+ */
+function irda_emit(code, callback) {
+	// Callback are optional.
+	callback = callback || noop;
+
+	var failure_timer;
+	counter++;
+
+	// Create JSONP script element to inject.
+	var script_element = document.createElement('script');
+	script_element.type = 'text/javascript';
+	script_element.async = true;
+	//script_element.src = 'http://c' + counter '@192.168.1.135/id.irda?id=' + code;
+	script_element.src = 'http://node.lumus.dk:8123/id.irda?id=' + code + '&count=' + counter;
+
+	// Funktion to invoke callback with result and cleanup.
+	request_ok = function(data) {
+		request_ok = noop; // The result must only be provided once.
+
+		// Cleanup after both success or failure.
+		clearTimeout(failure_timer);
+		script_element.onreadystatechange = undefined;
+		script_element.onerror = undefined;
+		script_element.parentNode.removeChild(script_element);
+		script_element = undefined; // So MSIE does not leak memory.
+
+		// Invoke callback with either error or actual data.
+		if (data === 'error') {
+			callback(new Error('IRDA request failed (code 0x' + code.toString(16) + ')'));
+		} else {
+			callback(null);
+		}
+	};
+	var failure = function() {
+		request_ok('error');
+	};
+
+	// Setup timer for failure. When it triggers, we assume the request failed.
+	var failure_timer = setTimeout(failure, 500);
+
+	// Fail faster if we know that the script is supposed to be executed.
+	script_element.onreadystatechange = function() {
+		if (this.readyState === 'loaded' || this.readyState === 'complete') {
+			failure();
+		}
+	};
+	script_element.onerror = failure;
+
+	// Inject script element, which in turn creates the JSONP request.
+	document.body.appendChild(script_element);
+};
+
+
+/*  // IR repeating is not implemented right now. //
+
+var irda_repeat_speed = 200;
+var irda_repeating = null;
+
+var irda_on_error = null;
+
+function irda_start(code) {
+	irda_end();
+	irda_repeating = setInterval(function() {
+		irda_emit(code, function(err) {
+			if (err && irda_on_error) {
+				irda_on_error(err);
+			}
+		});
+	}, irda_repeat_speed);
+}
+
+function irda_end() {
+	if (irda_repeating !== null) {
+		clearInterval(irda_repeating);
+	}
+}
+*/
+
+
+function map_key(name, code) {
+	$(name).bind('touchstart', function() {
+		irda_emit(code);
+	});
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+	var device_button = ir_codes['NEC RD-427E'].buttons;
+
+	map_key('volume-up',   device_button.volue_up  );
+	map_key('volume-down', device_button.volue_down);
+});
