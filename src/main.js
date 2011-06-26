@@ -94,7 +94,9 @@ var ir_codes = {
 };
 
 
-var use_cloud = location.search.match(/cloud/) || location.href.substring(0, 17) === 'http://anymot.es/';
+var use_cloud = (location.search.match(/cloud/) ||
+	location.href.substring(0, 17) === 'http://anymot.es/' ||
+	location.href.substring(0, 21) === 'http://www.anymot.es/');
 var noop = function() {};
 var request_ok = noop;
 var counter = 0;
