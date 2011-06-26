@@ -53,6 +53,7 @@ var ir_codes = {
 };
 
 
+var use_cloud = (location.search === '?c' || location.search === '?cloud' || location.href.substring(0, 17) === 'http://anymot.es/');
 var noop = function() {};
 var request_ok = noop;
 var counter = 0;
@@ -71,8 +72,11 @@ function irda_emit(code, callback) {
 	var script_element = document.createElement('script');
 	script_element.type = 'text/javascript';
 	script_element.async = true;
-	//script_element.src = 'http://c' + counter '@192.168.1.135/id.irda?id=' + code;
-	script_element.src = 'http://node.lumus.dk:8123/id.irda?id=' + code + '&count=' + counter;
+	if (use_cloud) {
+		script_element.src = 'http://node.lumus.dk:8123/id.irda?id=' + code + '&count=' + counter;
+	} else {
+		script_element.src = 'http://c' + counter + '@192.168.1.135/id.irda?id=' + code;
+	}
 
 	// Funktion to invoke callback with result and cleanup.
 	request_ok = function(data) {
@@ -149,8 +153,9 @@ $(function() {
 		$('#splash-screen').fadeOut('slow');
 	}, 5000);
 
-	var device_button = ir_codes['ASK ProXima'].buttons;
+	var device_button = ir_codes['Yamaha RX-396RDS'].buttons;
 
+	map_key('on-off',      device_button.power_on_off);
 	map_key('volume-up',   device_button.volume_up  );
 	map_key('volume-down', device_button.volume_down);
 });
