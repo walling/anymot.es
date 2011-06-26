@@ -214,6 +214,12 @@ $(function () {
 			} else {
 				set_current_device('Projector');
 			}
+		} else if (button_id == "config") {
+			if($('#config-screen').is(".disabled"))
+				$('#config-screen').attr("class", "enabled");
+			$('#config-screen').click(function(){
+				$('#config-screen').attr("class", "disabled");
+			});
 		} else {
 			var device = get_current_device();
 			handle_device_button_click(device, button_id);

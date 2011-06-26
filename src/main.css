@@ -17,6 +17,31 @@ div {
 	background-image: url('splash_screen.png');
 	z-index: 2;
 }
+#config-screen {
+	top: 0;
+	left: 0;
+	width: 480px;
+	height: 762px;
+	background-image: url('picture_of_remote.jpg');
+	display: none;
+	z-index: 2;
+}
+#config-screen {
+	top: 0;
+	left: 0;
+	width: 480px;
+	height: 762px;
+	background-image: url('picture_of_remote.jpg');
+	display: none;
+	z-index: 2;
+}
+.disabled#config-screen {
+	display: none;
+}
+.enabled#config-screen {
+	display: block;
+}
+
 #main {
 	top: 0;
 	left: 0;
