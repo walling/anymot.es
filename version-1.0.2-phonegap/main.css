@@ -1,0 +1,215 @@
+html, body, div {
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+div {
+	position: absolute;
+	background-repeat: no-repeat;
+}
+#splash-screen {
+	top: 0;
+	left: 0;
+	width: 480px;
+	height: 762px;
+	background-image: url('splash_screen.png');
+	z-index: 2;
+}
+#config-screen {
+	top: 0;
+	left: 0;
+	width: 480px;
+	height: 762px;
+	background-image: url('picture_of_remote.jpg');
+	display: none;
+	z-index: 2;
+}
+#config-screen {
+	top: 0;
+	left: 0;
+	width: 480px;
+	height: 762px;
+	background-image: url('picture_of_remote.jpg');
+	display: none;
+	z-index: 2;
+}
+.disabled#config-screen {
+	display: none;
+}
+.enabled#config-screen {
+	display: block;
+}
+
+#main {
+	top: 0;
+	left: 0;
+	width: 480px;
+	height: 762px;
+	/* background-color: #000;*/
+	background-image: url('anymote_bg.png');
+	/* margin-top: -38px; */
+	overflow: hidden;
+}
+#on-off {
+	left: 20px;
+	top: 10px;
+	width: 94px;
+	height: 94px;
+	background-image: url('anymote_power_button.png');
+}
+#config {
+	left: 140px;
+	top: 20px;
+	width: 142px;
+	height: 39px;
+	background-image: url('configure_button.png');
+}
+#device {
+	right: 20px;
+	top: 20px;
+	width: 159px;
+	height: 89px;
+	color: white;
+	background-image: url('device_button.png');
+	font-size: 35px;
+	font-family: sans-serif;
+	line-height: 70px;
+	text-align: center;
+}
+#channel-up {
+	left: 30px;
+	top: 120px;
+	width: 115px;
+	height: 122px;
+	background-image: url('ch_plus_button.png');
+}
+#channel-down {
+	left: 30px;
+	top: 242px;
+	width: 115px;
+	height: 122px;
+	background-image: url('ch_minus_button.png');
+}
+#volume-up {
+	right: 30px;
+	top: 120px;
+	width: 115px;
+	height: 122px;
+	background-image: url('vol_plus_button.png');
+}
+#volume-down {
+	right: 30px;
+	top: 242px;
+	width: 115px;
+	height: 122px;
+	background-image: url('vol_minus_button.png');
+}
+#ok {
+	/* HACK - The OK button needs to be broken down into its 5 elements, and then the up, down, left and right can be re-enabled
+	left: 190px;
+	top: 180px;
+	*/
+	left: 150px;
+	top: 135px;
+	width: 181px;
+	height: 181px;
+	background-image: url('dvd_play.png');
+}
+/*
+#up {
+	left: 190px;
+	top: 125px;
+	width: 100px;
+	height: 45px;
+	background-image: url('');
+}
+#down {
+	left: 190px;
+	top: 290px;
+	width: 100px;
+	height: 45px;
+	background-image: url('');
+}
+#left {
+	left: 135px;
+	top: 180px;
+	width: 45px;
+	height: 100px;
+	background-image: url('');
+}
+#right {
+	right: 135px;
+	top: 180px;
+	width: 45px;
+	height: 100px;
+	background-image: url('');
+}
+*/
+#menu {
+	left: 180px;
+	top: 325px;
+	width: 115px;
+	height: 63px;
+	background-image: url('menu_button.png');
+}
+#text-channel {
+	left: 30px;
+	top: 365px;
+	width: 115px;
+	height: 22px;
+	background-image: url('ch_label.png');
+}
+#text-volume {
+	right: 35px;
+	top: 365px;
+	width: 115px;
+	height: 22px;
+	background-image: url('vol_label.png');
+}
+#gesture-area {
+	left: 20px;
+	top: 410px;
+	width: 440px;
+	height: 300px;
+	background-image: url('');
+}
+#device-selector
+{
+	background-color:#999;
+
+	top: 0;
+	left: 480px;
+
+	width: 400px;
+	height: 268px;
+	position: absolute;
+	margin-top: 25px;
+	padding: 0;
+	bottom: 0;
+
+	padding-left: 8px;
+
+	opacity: 0.8;
+	border-radius: 10px;
+}
+#device-selector div
+{
+	display: block;
+	position:relative;
+	margin: 20px;
+
+	background-color: #333;
+
+	font-size: 35px;
+	margin: 7px 0px;
+	margin-right: 6px;
+	padding: 10px 12px 7px;
+	text-decoration: none;
+	color: #ffffff;
+	font-weight: bold;
+	border-radius: 2px;
+	text-shadow: 0px 1px 0px #000;
+	border-radius: 5px;
+}
